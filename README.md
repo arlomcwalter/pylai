@@ -1,14 +1,12 @@
 # Pylai
-
-A simple cli totp manager and authenticator.
+A simple cli totp manager and authenticator.  
 
 ## Usage
 Use `pylai --help` to see the available commands.  
-Use `pylai [command] --help` for more information about a command.
-Use `pylai --version` to see the current version.
+Use `pylai [command] --help` for more information about a command.  
+Use `pylai --version` to see the current version.  
 
-
-Commands:
+### Commands:
 ```
 add         Add a new account.
 delete      Delete an account.
