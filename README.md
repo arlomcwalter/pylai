@@ -16,3 +16,11 @@ generate    Generate a TOTP code.
 list        List all accounts.
 verify      Verifies that a TOTP code matches the account.
 ```
+
+## Installation
+Binaries are available on the [releases page](https://github.com/arlomcwalter/pylai/releases/latest).    
+You can also install pylai using homebrew:  
+```
+brew tap arlomcwalter/tap
+brew install pylai
+```
