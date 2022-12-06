@@ -13,12 +13,12 @@ var verifyCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		nickname, err := cmd.Flags().GetString("name")
 		if err != nil {
-			panic(err)
+			Quit("Error reading flag.")
 		}
 
 		code, err := cmd.Flags().GetString("code")
 		if err != nil {
-			panic(err)
+			Quit("Error reading flag.")
 		}
 
 		var account *database.Account
@@ -26,7 +26,7 @@ var verifyCmd = &cobra.Command{
 		if isPresent(nickname) && isPresent(code) {
 			account, err = database.Get(nickname)
 			if err != nil {
-				panic(err)
+				Quit("Error getting account from database.")
 			}
 		} else {
 			account = accountSelector()
@@ -34,9 +34,9 @@ var verifyCmd = &cobra.Command{
 		}
 
 		if util.VerifyTotp(code, account.Secret) {
-			fmt.Println("That code is valid.")
+			fmt.Println(Green("✔ Code is valid."))
 		} else {
-			fmt.Println("That code is invalid.")
+			fmt.Println(Red("✘ Code is invalid."))
 		}
 	},
 }

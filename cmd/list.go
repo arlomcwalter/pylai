@@ -12,7 +12,7 @@ var listCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		accounts, err := database.GetAll()
 		if err != nil {
-			panic(err)
+			Quit("Error getting accounts from database.")
 		}
 
 		count := len(accounts)

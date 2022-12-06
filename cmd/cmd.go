@@ -24,7 +24,7 @@ func Execute() {
 		} else {
 			err := cmd.Help()
 			if err != nil {
-				panic(err)
+				Quit("Error displaying help message.")
 			}
 		}
 	}
@@ -50,7 +50,7 @@ func Execute() {
 	addOtpFlag(verifyCmd)
 
 	if err := rootCmd.Execute(); err != nil {
-		panic(err)
+		Quit("Error executing command.")
 	}
 }
 

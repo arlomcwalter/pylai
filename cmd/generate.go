@@ -14,7 +14,7 @@ var genCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		nickname, err := cmd.Flags().GetString("name")
 		if err != nil {
-			panic(err)
+			Quit("Error reading flag.")
 		}
 
 		var account *database.Account
@@ -22,7 +22,7 @@ var genCmd = &cobra.Command{
 		if isPresent(nickname) {
 			account, err = database.Get(nickname)
 			if err != nil {
-				panic(err)
+				Quit("Error getting account from database.")
 			}
 		} else {
 			account = accountSelector()
@@ -30,7 +30,7 @@ var genCmd = &cobra.Command{
 
 		code, err := util.GenerateTotp(account.Secret)
 		if err != nil {
-			panic(err)
+			Quit("Error generating totp code.")
 		}
 
 		fmt.Printf("%s Your code is: %s\n", Green("✔"), Bold(code))

@@ -26,12 +26,12 @@ func closeDb() error {
 func Init() {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading home directory.")
 	}
 
 	db, err := leveldb.OpenFile(filepath.Join(homeDir, ".pylai"), nil)
 	if err != nil {
-		panic(err)
+		log.Fatal("Error opening database.")
 	}
 
 	DB = db
@@ -40,6 +40,6 @@ func Init() {
 func Shutdown() {
 	err := DB.Close()
 	if err != nil {
-		panic(err)
+		log.Fatal("Error closing database.")
 	}
 }

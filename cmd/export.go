@@ -14,7 +14,7 @@ var exportCmd = &cobra.Command{
 		if all {
 			accounts, err := database.GetAll()
 			if err != nil {
-				panic(err)
+				Quit("Error getting accounts from database.")
 			}
 
 			for _, account := range accounts {
@@ -23,7 +23,7 @@ var exportCmd = &cobra.Command{
 		} else {
 			nickname, err := cmd.Flags().GetString("name")
 			if err != nil {
-				panic(err)
+				Quit("Error reading flag.")
 			}
 
 			var account *database.Account
@@ -31,7 +31,7 @@ var exportCmd = &cobra.Command{
 			if isPresent(nickname) {
 				account, err = database.Get(nickname)
 				if err != nil {
-					panic(err)
+					Quit("Error getting account from database.")
 				}
 			} else {
 				account = accountSelector()

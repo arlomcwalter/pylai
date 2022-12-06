@@ -12,12 +12,12 @@ var addCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		nickname, err := cmd.Flags().GetString("name")
 		if err != nil {
-			panic(err)
+			Quit("Error reading flag.")
 		}
 
 		secret, err := cmd.Flags().GetString("secret")
 		if err != nil {
-			panic(err)
+			Quit("Error reading flag.")
 		}
 
 		if !isPresent(nickname) && !isPresent(secret) {
@@ -31,7 +31,7 @@ var addCmd = &cobra.Command{
 		}
 
 		if err := account.Save(); err != nil {
-			panic(err)
+			Quit("Error saving account.")
 		}
 
 		fmt.Printf("%s Added %s.\n", Green("✔"), Bold(account.Nickname))
