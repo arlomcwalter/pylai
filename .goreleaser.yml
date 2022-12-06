@@ -1,23 +1,16 @@
 builds:
   - binary: pylai
-    goos:
-      - darwin
-      - linux
     goarch:
       - amd64
       - arm64
     env:
       - CGO_ENABLED=0
 
-release:
-  prerelease: auto
-
 universal_binaries:
   - replace: true
 
 brews:
-  -
-    name: pylai
+  - name: pylai
     homepage: "https://github.com/arlomcwalter/pylai"
     description: "Simple cli totp manager and authenticator"
     folder: Formula
